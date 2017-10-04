@@ -1,0 +1,4 @@
+{
+    "Keys": ["uvcengine"],
+    "Services": ["org.qt-project.qt.camera"]
+}
