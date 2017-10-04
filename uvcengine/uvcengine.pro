@@ -11,6 +11,7 @@ QT       += core gui multimedia
 TARGET = uvcengine
 TEMPLATE = lib
 CONFIG += plugin
+CONFIG += console
 
 DESTDIR = $$[QT_INSTALL_PLUGINS]/mediaservice
 
@@ -37,43 +38,23 @@ unix {
 }
 
 # Dependencies
-LIBUSBPATH = "C:/Users/santini/repo/libusb/"
-LIBUVCPATH = "C:/Users/santini/repo/libuvc/"
-LIBPTHREADSPATH = "C:/Users/santini/repo/libuvc/pthreads-2.9.1/"
+# (sniyaz): You may need to point these at your own install locations for these.
+LIBUSBPATH = "/usr/"
+LIBUVCPATH = "/usr/local/"
 
 # Libraries required to access pupil lab's cameras
 # LIBUSB-1.0
-INCLUDEPATH += "$${LIBUSBPATH}/libusb/"
-win32:contains(QMAKE_HOST.arch, x86_64) {
-    Release:LIBS += "-L$${LIBUSBPATH}/x64/Release/dll"
-    Debug:LIBS += "-L$${LIBUSBPATH}/x64/Debug/dll"
-} else {
-    Release:LIBS += "-L$${LIBUSBPATH}/x86/Release/dll"
-    Debug:LIBS += "-L$${LIBUSBPATH}/x86/Debug/dll"
-}
-LIBS += -llibusb-1.0
+INCLUDEPATH += "$${LIBUSBPATH}/include/libusb-1.0/"
+LIBS += "-L$${LIBUSBPATH}/lib/x86_64-linux-gnu/"
+LIBS += -lusb-1.0
 
 # LIBUVC
-INCLUDEPATH += "$${LIBUVCPATH}/install/include/"
-win32:contains(QMAKE_HOST.arch, x86_64) {
-    Release:LIBS += "-L$${LIBUVCPATH}/build/Release/"
-    Debug:LIBS += "-L$${LIBUVCPATH}/build/Debug"
-} else {
-    Release:LIBS += "-L$${LIBUVCPATH}/build/Release/"
-    Debug:LIBS += "-L$${LIBUVCPATH}/build/Debug"
-}
+INCLUDEPATH += "$${LIBUVCPATH}/include/libuvc/"
+LIBS += "-L$${LIBUVCPATH}/lib/"
 LIBS += -luvc
 
 # PTHREADS
-INCLUDEPATH += "$${LIBPTHREADSPATH}/include/"
-win32:contains(QMAKE_HOST.arch, x86_64) {
-    Release:LIBS += "-L$${LIBPTHREADSPATH}/lib/x64/"
-    Debug:LIBS += "-L$${LIBPTHREADSPATH}/lib/x64/"
-} else {
-    Release:LIBS += "-L$${LIBPTHREADSPATH}/lib/x86/"
-    Debug:LIBS += "-L$${LIBPTHREADSPATH}/lib/x86/"
-}
-LIBS += -lpthreadVC2
+LIBS += -lpthread
 
 # Work around for bad visual studio update (msvc14)
 win32{
