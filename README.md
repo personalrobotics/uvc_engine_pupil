@@ -1,23 +1,22 @@
 Qt UVC Engine
 =============
 
-This plugin provides a backend for UVC camera access through Qt's QCamera on Windows,
-which usually is provided through DirectShow or Microsoft Media Foundation.
+Original GitLab link: https://atreus.informatik.uni-tuebingen.de/santini/uvcengine
 
-It was mainly developed (and tested!) to allow for an uniform interface to Pupil Labs' eye tracker,
-thus allowing [EyeRecToo] (http://www.ti.uni-tuebingen.de/EyeRecToo.1907.0.html) to make use of these devices.
-For up-to-date instructions on driver installation for Pupil eye trackers, check the [Pupil Labs' guide] (https://github.com/pupil-labs/pupil/wiki/Windows-Driver-Setup).
+This plugin provides a backend for UVC camera access through Qt's QCamera on Ubuntu. You **must** install
+this plugin before running EyeRecToo with the Pupil Labs cameras. Otherwise, nothing will work and you will be sad.
 
 
 Notes
 ------------
-**This is beta software at the moment, in particular because of the poor libuvc/libusb support on Windows.**
+**This is beta software at the moment. It seems to work OK, but has only been tested in Ubuntu 14.04.**
 
 Dependencies
 ------------
 
-1. [Libusb with isochronous support] (http://github.com/pupil-labs/libusb)
-2. [Libuvc] (http://github.com/pupil-labs/libuvc)
-3. MSVS 2015
-4. Developed with Qt 5.7.0 [(here for possible compatibility issues)]  (http://doc.qt.io/qt-5/deployment-plugins.html)
+1. [Libusb with isochronous support]
+2. [Libuvc]
+3. [Qt 5.7.0]
 
+**Note:** The last dependency is needed to build the .pro file and run EyeRecToo. 
+Qt is a "make-makefile" system similar to CMake. Google around to figure out how to use it here, or ask sniyaz.
